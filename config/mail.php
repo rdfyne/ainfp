@@ -107,4 +107,9 @@ return [
         ],
     ],
 
+    'admin' => [
+        'address' => env('MAIL_ADMIN_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_ADMIN_FROM_NAME', 'Example'),
+    ],
+
 ];
