@@ -20,7 +20,6 @@ class ApplicationResource extends JsonResource
 
                 'delete' => route('application.destroy', $this->id),
                 'show' => route('application.show', $this->id),
-                'attachment' => route('application.attachment', $this->id),
             )
         ]);
     }

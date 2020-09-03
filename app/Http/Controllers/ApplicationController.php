@@ -8,7 +8,6 @@ use App\Http\Requests\Application\StoreRequest;
 use App\Http\Resources\ApplicationCollection;
 use App\Http\Controllers\Export\ApplicationExcelExport;
 use PDF;
-use Storage;
 
 class ApplicationController extends Controller
 {
@@ -62,7 +61,7 @@ class ApplicationController extends Controller
         })->orderBy(
 
             $request->order_column,
-            $request->order_direction
+            $request->order_direction,
 
         )->paginate($request->per_page, ['*'], 'page', $request->page);
 
@@ -89,19 +88,19 @@ class ApplicationController extends Controller
     {
         # save file uploads
         
-        $company_logo = $request->hasFile('company_logo') ? $request->file('company_logo')->store('application/company_logo') : null;
+        $owners = $request->hasFile('owners') ? $request->file('owners')->store('application/owners') : null;
 
-        $brand_document = $request->hasFile('brand_document') ? $request->file('brand_document')->store('application/brand_document') : null;
+        $premises = $request->hasFile('premises') ? $request->file('premises')->store('application/premises') : null;
 
         # add application to database
 
         Application::create( array_merge( $request->except([
 
-            'company_logo', 'brand_document', '_token', 'tocs',
+            'owners', 'premises', '_token', 'tocs',
 
-        ]), compact('company_logo', 'brand_document')) );
+        ]), compact('owners', 'premises')) );
 
-        return back()->with('success', 'Thank you. Your application has been received successfully.');
+        return back()->with('success', 'Thanking for making your application');
     }
 
     /**
@@ -138,32 +137,13 @@ class ApplicationController extends Controller
     }
 
     /**
-     * Show application attachement.
+     * Show invoice attachement.
      *
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function attachment(Application $application)
+    public function invoice(Application $application)
     {
-        return ( PDF::loadView('application/attachment', compact('application')) )->stream("$application->company.pdf");
-    }
-
-    /**
-     * Show application attachement.
-     *
-     * @param  \App\Application  $application
-     * @return \Illuminate\Http\Response
-     */
-    public function brandDocument(Application $application)
-    {
-        return Storage::download(
-
-            $application->brand_document,
-            "$application->company brand document." . pathinfo(
-
-                public_path("storage/$application->brand_document"), 
-                PATHINFO_EXTENSION
-            )
-        );
+        return ( PDF::loadView('application/invoice', compact('application')) )->stream();
     }
 }

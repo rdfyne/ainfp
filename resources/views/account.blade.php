@@ -46,8 +46,6 @@
 											Email
 										</label>
 										<input value="{{ old('email', Auth::user()->email) }}" type="text" name="email" class="form-control">
-										
-										@include('partials.form.error', ['field' => 'email'])
 									</div>
 								</div>
 
@@ -58,8 +56,6 @@
 											Password
 										</label>
 										<input type="password" name="password" class="form-control">
-										
-										@include('partials.form.error', ['field' => 'password'])
 									</div>
 								</div>
 
@@ -72,6 +68,8 @@
 										<input type="password" name="password_confirmation" class="form-control">
 									</div>
 								</div>
+
+								@include('partials.form.error', ['field' => 'password'])
 
 								<div class="col-sm-12">
 									<button type="submit" class="btn btn-primary btn-block">

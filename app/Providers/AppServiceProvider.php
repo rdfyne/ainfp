@@ -47,11 +47,6 @@ class AppServiceProvider extends ServiceProvider
                 $service->order_column = $order_column;
                 $service->order_direction = $order_direction;
             }
-            else {
-
-                $service->order_column = 'id';
-                $service->order_direction = 'asc';
-            }
 
             # pagination
 

@@ -15,26 +15,4 @@ class Application extends Model
      * @var bool
      */
     protected static $unguarded = true;
-    
-    /**
-     * annual revenue.
-     *
-     * @param  double  $value
-     * @return int
-     */
-    public function getAnnualRevenueAttribute($value)
-    {
-        return floor($value);
-    }
-
-    /**
-     * farmers number.
-     *
-     * @param  double  $value
-     * @return int
-     */
-    public function getFarmersNumberAttribute($value)
-    {
-        return floor($value);
-    }
 }

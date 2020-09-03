@@ -24,11 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'year_established' => 'numeric|digits:4',
-            'farmers_number' => 'numeric|digits_between:1,54',
-            'annual_revenue' => 'numeric',
-            'company_logo' => 'required|image',
-            'brand_document' => 'nullable|file',
+            //
         ];
     }
 }

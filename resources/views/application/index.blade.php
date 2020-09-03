@@ -36,13 +36,15 @@
 						<table class="table table-bordered table-striped" id="group-table">
 							<thead>                  
 								<tr>
-								  <th>No.</th>
+								  <th>ID</th>
 								  <th>Name</th>
 								  <th>Email</th>
 								  <th>Country</th>
 								  <th>Phone Number</th>
 								  <th>Company</th>
-								  <th>Actions</th>
+								  <th>Form of Business</th>
+								  <th>Annual Revenue</th>
+								  <th>Action</th>
 								</tr>
 							</thead>
 						</table>
@@ -59,47 +61,39 @@
 
 		$(document).ready( function () {
 
-			let table = $('#group-table').DataTable({
+			$('#group-table').DataTable({
 
 				dom: "<'row'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" +
 				"<'row'<'col-sm-12'tr>>" +
 				"<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-8'p>>",
 				scrollX: true,
-				order: [],
-				columnDefs: [{
-                    searchable: false,
-                    orderable: false,
-                    targets: 0
-                }],
 		        info: false,
 			    serverSide: true,
 			    processing: true,
-			    ajax: @json( route('application.index.api') ),
+			    ajax: @json( route('application.index') ),
 			    columns: [
 
-			    	{
-			    	    data: "no",
-			    	    render: () => ''
-			    	},
+			    	{data: "id"},
 		            {data: "name"},
 		            {data: "email"},
 		            {data: "country"},
 		            {data: "phone"},
 		            {data: "company"},
+		            {data: "form_of_business"},
+		            {
+		            	data: "annual_revenue",
+		            	render: (data) => new Intl.NumberFormat().format(data)
+		            },
 		            {
 		            	data: "action",
 		            	orderable: false,
-		            	width: "450px",
+		            	width: "200px",
 		            	render(data, type, row) {
 
 					        return `
 					        	<a href="${row.hateoas.show}" class="btn btn-block bg-gradient-primary btn-sm action">
 									<i class="fa fa-eye"></i>
 									&nbsp; View
-								</a>
-								
-								<a href="${row.hateoas.attachment}" target="_blank" class="btn btn-block bg-gradient-secondary btn-sm action">
-									Download in PDF
 								</a>
 
 								<a onclick='deleteApplication(${JSON.stringify(row)})' class="btn btn-block bg-gradient-danger btn-sm action">
@@ -124,21 +118,6 @@
 			        ]
 			    }
 			})
-			
-			table.on( 'draw.dt', function () {
-
-		    	var PageInfo = $('#group-table').DataTable().page.info()
-
-		        table.column(0, {
-
-		        	page: 'current'
-		        })
-		        .nodes()
-		        .each( function (cell, i) {
-		        	
-		            cell.innerHTML = i + 1 + PageInfo.start;
-		        })
-		    })
 		})
 
 		function deleteApplication(application) {
@@ -150,7 +129,7 @@
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete!',
+				confirmButtonText: 'Yes, disable!',
 				allowOutsideClick: false,
 				showLoaderOnConfirm: true,
 				preConfirm: () => {

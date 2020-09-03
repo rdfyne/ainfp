@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('application.index') }}" class="brand-link">
-        <img src="{{ asset('backoffice/images/ainfp-favicon.png') }}"
+    <a href="{{ route('application.create') }}" class="brand-link">
+        <img src="{{ asset('front/img/ainfp-ftf.png') }}"
          class="brand-image"
          style="opacity: .8">
         <span class="brand-text font-weight-light" style="font-size: .9em;">

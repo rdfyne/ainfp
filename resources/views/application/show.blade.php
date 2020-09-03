@@ -44,16 +44,14 @@
 									Details
 								</a>
 							</li>
-							@if ($application->brand_document)
-								<li class="nav-item">
-									<a class="nav-link" href="{{ route('application.brand_document', $application) }}" target="_blank">
-										Brand Document
-									</a>
-								</li>
-							@endif
 							<li class="nav-item">
-							    <a href="{{ route('application.attachment', $application) }}" target="_blank" class="nav-link">
-									Download in PDF
+								<a class="nav-link" href="#owners" data-toggle="tab">
+									Owners
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#premises" data-toggle="tab">
+									Premises
 								</a>
 							</li>
 						</ul>
@@ -66,7 +64,7 @@
 										<!-- text input -->
 										<div class="form-group">
 											<label>
-												Full Name
+												Name
 											</label>
 											<input value="{{ $application->name }}" type="text" class="form-control" readonly>
 										</div>
@@ -74,7 +72,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Email Address
+												Email
 											</label>
 											<input value="{{ $application->email }}" type="text" class="form-control" readonly>
 										</div>
@@ -98,7 +96,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Company Name
+												Company
 											</label>
 											<input value="{{ $application->company }}" type="text" class="form-control" readonly>
 										</div>
@@ -106,7 +104,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Year of Establishment
+												Year Established
 											</label>
 											<input value="{{ $application->year_established }}" type="text" class="form-control" readonly>
 										</div>
@@ -130,7 +128,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Physical Address and GPS Coordinates
+												Physical Address
 											</label>
 											<input value="{{ $application->physical_address }}" type="text" class="form-control" readonly>
 										</div>
@@ -138,7 +136,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Form of business registration (LLC, Coop, etc)
+												Form of Business
 											</label>
 											<input value="{{ $application->form_of_business }}" type="text" class="form-control" readonly>
 										</div>
@@ -146,15 +144,15 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Is this a subsidiary of another business? If yes, where is home office
+												Head Office
 											</label>
-											<input value="{{ $application->home_office }}" type="text" class="form-control" readonly>
+											<input value="{{ $application->head_office }}" type="text" class="form-control" readonly>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Installed/Operating Capacity (Mt/day or litres/day)
+												Installed Capacity
 											</label>
 											<input value="{{ $application->installed_capacity }}" type="text" class="form-control" readonly>
 										</div>
@@ -162,7 +160,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Number of Employees (full time/part time; male/female)
+												Employee Number
 											</label>
 											<input value="{{ $application->employee_number }}" type="text" class="form-control" readonly>
 										</div>
@@ -170,7 +168,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Annual Revenue ($/year)
+												Annual Revenue
 											</label>
 											<input value="{{ $application->annual_revenue }}" type="text" class="form-control" readonly>
 										</div>
@@ -178,7 +176,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Business Ownership: Male/Female proportion
+												Ownership Proportion
 											</label>
 											<input value="{{ $application->ownership_proportion }}" type="text" class="form-control" readonly>
 										</div>
@@ -186,7 +184,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Number of Farmers Supported
+												Farmers Number
 											</label>
 											<input value="{{ $application->farmers_number }}" type="text" class="form-control" readonly>
 										</div>
@@ -194,7 +192,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Primary/Main Product(s) produced (level/frequency) e.g 10MT/Day of fortified maize Flour. (If producing more than one product, ONLY provide information for the main one)
+												Products Produced
 											</label>
 											<input value="{{ $application->products_produced }}" type="text" class="form-control" readonly>
 										</div>
@@ -210,7 +208,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Major markets/buyers
+												Major Markets
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->major_markets }}</textarea>
 										</div>
@@ -218,7 +216,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Are you currently targeting or have potential and interest in Bottom of Pyramid market?
+												Potential Markets
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->potential_markets }}</textarea>
 										</div>
@@ -226,7 +224,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Are you in a commercial relationship with any of the PFS corporate partners (General Mills, Cargill, DSM, Buhler, The Hershey Company, Ardent Mills and The J.M. Smucker Company)? If yes which one(s)
+												Corporate Partners
 											</label>
 											<textarea class="form-control" rows="10" readonly>{{ $application->corporate_partners }}</textarea>
 										</div>
@@ -234,7 +232,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Any financing (loan/equity)? If yes, with whom, what amount, what for, interest rate and term of financing
+												Financing
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->financing }}</textarea>
 										</div>
@@ -242,7 +240,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Where do you expect your Annual Revenue to be in 3 years? Explain any other production goal in addition to Revenue
+												Production Goal
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->production_goal }}</textarea>
 										</div>
@@ -250,7 +248,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												What types of machinery and technology do you use
+												Technology
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->technology }}</textarea>
 										</div>
@@ -258,7 +256,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Outline any active partnerships you have with other donors or NGOs
+												NGO Partnerships
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->ngo_partnerships }}</textarea>
 										</div>
@@ -266,7 +264,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												Any other information that is important for us to know
+												Challenges
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->challenges }}</textarea>
 										</div>
@@ -274,7 +272,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												What is your primary interest in partnering with the Alliance for Inclusive and Nutritious Food Processing? * (Max 700 words)
+												Interests
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->interests }}</textarea>
 										</div>
@@ -282,7 +280,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												What are the gaps/ opportunities that you envision your business benefiting from as a result of this partnership? * (Max 700 words)
+												Needs
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->needs }}</textarea>
 										</div>
@@ -290,12 +288,31 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>
-												What would be the desired results/outcomes for your business as a result of engagement with this partnership? * (Max 700 words)
+												Success
 											</label>
 											<textarea type="text" class="form-control" rows="10" readonly>{{ $application->success }}</textarea>
 										</div>
 									</div>
+									<div class="col-sm-12">
+										<a href="{{ route('application.invoice', $application) }}" target="_blank" class="btn btn-block bg-gradient-primary btn-sm action">
+											View Invoice
+										</a>
+									</div>
 								</div>
+							</div>
+							<div class="tab-pane" id="owners">
+								@if ( $application->owners )
+									<img src="{{ Storage::url($application->owners) }}" width="200" height="200">
+								@else
+									No owners upload
+								@endif
+							</div>
+							<div class="tab-pane" id="premises">
+								@if ( $application->premises )
+									<img src="{{ Storage::url($application->premises) }}" width="200" height="200">
+								@else
+									No premise upload
+								@endif
 							</div>
 						</div>
 						<!-- /.tab-content -->

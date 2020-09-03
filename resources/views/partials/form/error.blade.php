@@ -1,5 +1,5 @@
 @error($field)
-    <span class="text-danger" role="alert">
-        {{ $message }}
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
     </span>
 @enderror

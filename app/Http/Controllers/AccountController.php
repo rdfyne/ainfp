@@ -31,12 +31,11 @@ class AccountController extends Controller
         $this->validate($request, [
 
             'password' => 'nullable|min:8|confirmed',
-            'email' => 'required|email',
         ]);
 
         if (
 
-            DB::table('users')->where('id', Auth::id())->update([
+            DB::table('users')->update([
 
                 'email' => $request->email,
                 'password' => $request->filled('password') ? Hash::make($request->password) : Auth::user()->getAuthPassword(),
